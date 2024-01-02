@@ -40,5 +40,15 @@ totp() {
     { sleep ${wtime} && wl-copy --clear & disown; } 2> /dev/null
 }
 
+hex2base32() {
+    xxd -r -p <<< ${@} | base32
+}
+
+otp.keyuri() {
+    echo "otpauth://totp/${1}?secret=${2}&issuer=${1}&algorithm=SHA1&digits=6&period=30"
+}
+
 export -f totp
+export -f hex2base32
+export -f otp.keyuri
 complete -F _candidates totp
