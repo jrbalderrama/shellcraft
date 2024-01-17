@@ -50,10 +50,13 @@ def main(url):
     contents = json_parse(url)
     audio_details = get_audio_details(contents)
     print("\n".join(pformat(audio_details, uri.netloc)))
-    option = input("Select a number: ")
-    audio = audio_details[option][0]
-    download(url, audio)
-
+    try:
+        option = input("Select a number: ")
+        audio = audio_details[option][0]
+        download(url, audio)
+    except KeyboardInterrupt:
+        print("\n\nKeyboard interrupt!", file=sys.stderr)
+        sys.exit(0)
 
 if __name__ == "__main__":
     main(sys.argv[1])
