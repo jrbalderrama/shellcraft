@@ -45,7 +45,8 @@ otp-hex2base32() {
 }
 
 otp-keyuri() {
-    echo "otpauth://totp/${1}?secret=${2}&issuer=${1}&algorithm=SHA1&digits=6&period=30"
+    echo "otpauth://totp/${1}?secret=${2}&issuer=${1}&algorithm=SHA1&digits=6&period=30" \
+         | tee >(wl-copy)
 }
 
 export -f totp
