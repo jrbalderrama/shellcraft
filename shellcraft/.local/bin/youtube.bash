@@ -26,4 +26,15 @@ yt-rss() {
     echo ${LINK_RSS} | tee >(wl-copy)
 }
 
+yt-dlpi() {
+    if [[ $# -eq 1 ]]; then
+        python yt-wrapper.py "$@"
+    else
+        echo "Wrong number of parameters." >&2
+        echo "Usage:\n" >&2
+        echo "       $0 <url>" >&2
+    fi
+}
+
 export -f yt-rss
+export -f yt-dlpi
