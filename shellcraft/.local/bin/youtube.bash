@@ -28,11 +28,13 @@ yt-rss() {
 
 yt-dlpi() {
     if [[ $# -eq 1 ]]; then
-        python yt-wrapper.py "$@"
+        local SHELL_PATH=$(dirname -- ${BASH_SOURCE})
+        SHELL_PATH=$(cd -- ${SHELL_PATH} && pwd)
+        python "${SHELL_PATH}/yt-wrapper.py" "$@"
     else
         echo "Wrong number of parameters." >&2
-        echo "Usage:\n" >&2
-        echo "       $0 <url>" >&2
+        echo "Usage:" >&2
+        echo "       $FUNCNAME <URL>" >&2
     fi
 }
 
