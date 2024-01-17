@@ -3,8 +3,6 @@
 # Inspired by:
 # https://gist.github.com/tjluoma/fdbc63ceb78a2aecd3d638fd18b6ec6e
 
-#NAME=$(basename $BASH_SOURCE)
-
 yt-rss() {
     local CURL_FLAGS="--fail --silent --location --show-error"
     # htmlq is installed with 'cargo'
@@ -19,7 +17,7 @@ yt-rss() {
         if [[ -n $CHANNEL_ID ]]; then
             LINK_RSS="https://www.youtube.com/feeds/videos.xml?channel_id=$CHANNEL_ID"
         else
-            echo "$NAME: 'CHANNEL_ID' and 'LINK_RSS' are both empty for '${1}'." >&2
+            echo "'CHANNEL_ID' nor 'LINK_RSS' were found '${1}'." >&2
             exit 1
         fi
     fi
